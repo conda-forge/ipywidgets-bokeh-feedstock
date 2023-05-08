@@ -1,11 +1,11 @@
-About ipywidgets-bokeh
-======================
+About ipywidgets-bokeh-feedstock
+================================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ipywidgets-bokeh-feedstock/blob/main/LICENSE.txt)
 
 Home: https://github.com/bokeh/ipywidgets_bokeh
 
 Package license: BSD-3-Clause
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ipywidgets-bokeh-feedstock/blob/main/LICENSE.txt)
 
 Summary: Allows embedding of Jupyter widgets in Bokeh layouts.
 
