@@ -1,5 +1,5 @@
 {% set name = "ipywidgets-bokeh" %}
-{% set version = "1.2.1" %}
+{% set version = "1.4.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/ipywidgets_bokeh-{{ version }}.tar.gz
-  sha256: 91142f3dd187f77426c775fdea017a56b459bbbf6dbf4242f86e27ccfd92e7cf
+  sha256: a62d528408e7f33ebc9d3c78361c08b72ace5aeb98df10986c1d1a5175433d56
 
 build:
   noarch: python
