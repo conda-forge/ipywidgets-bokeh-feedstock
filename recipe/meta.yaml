@@ -14,7 +14,7 @@ build:
 
 outputs:
   - name: ipywidgets_bokeh
-    script: {{ PYTHON }} -m pip install . -vv
+    script: {{ python }} -m pip install . -vv
     build:
       noarch: python
     requirements:
@@ -38,10 +38,7 @@ outputs:
 
   - name: ipywidgets-bokeh
     requirements:
-      host:
-        - python
       run:
-        - python
         - {{ pin_subpackage('ipywidgets_bokeh', exact=True) }}
     test:
       imports:
