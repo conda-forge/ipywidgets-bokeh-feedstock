@@ -15,7 +15,7 @@ build:
 outputs:
   - name: ipywidgets_bokeh
     build:
-      script: build_base.sh
+      script: {{ PYTHON }} -m pip install . -vv --no-deps
       noarch: python
     requirements:
       host:
