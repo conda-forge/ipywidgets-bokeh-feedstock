@@ -1,4 +1,4 @@
-{% set name = "ipywidgets-bokeh" %}
+{% set name = "ipywidgets_bokeh" %}
 {% set version = "1.6.0" %}
 
 package:
@@ -56,3 +56,4 @@ about:
 extra:
   recipe-maintainers:
     - raybellwaves
+    - hoxbro
