@@ -26,6 +26,7 @@ outputs:
         - bokeh ==3.*
         - ipykernel ==6.*,!=6.18.0
         - ipywidgets ==8.*
+        - setuptools
     test:
       imports:
         - ipywidgets_bokeh
