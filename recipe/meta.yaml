@@ -1,4 +1,4 @@
-{% set name = "ipywidgets-bokeh" %}
+{% set name = "ipywidgets_bokeh" %}
 {% set version = "1.6.0" %}
 
 package:
@@ -6,31 +6,45 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/ipywidgets_bokeh-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 42f3dbe39bd1618a98f1b9ea43ac2573533fc56badb85fee5145d1235467f636
 
 build:
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
-requirements:
-  host:
-    - pip
-    - python >=3.9
-  run:
-    - python >=3.9
-    - bokeh ==3.*
-    - ipykernel ==6.*,!=6.18.0
-    - ipywidgets ==8.*
+outputs:
+  - name: {{ name }}
+    build:
+      script: python -m pip install . -vv --no-deps
+      noarch: python
+    requirements:
+      host:
+        - python >=3.9
+        - pip
+        - setuptools
+      run:
+        - python >=3.9
+        - bokeh ==3.*
+        - ipykernel ==6.*,!=6.18.0
+        - ipywidgets ==8.*
+        - setuptools
+    test:
+      imports:
+        - ipywidgets_bokeh
+      commands:
+        - pip check
+      requires:
+        - pip
 
-test:
-  imports:
-    - ipywidgets_bokeh
-  commands:
-    - pip check
-  requires:
-    - pip
+  - name: ipywidgets-bokeh
+    build:
+      noarch: python
+    requirements:
+      run:
+        - {{ pin_subpackage(name, exact=True) }}
+    test:
+      imports:
+        - ipywidgets_bokeh
 
 about:
   home: https://github.com/bokeh/ipywidgets_bokeh
@@ -41,3 +55,4 @@ about:
 extra:
   recipe-maintainers:
     - raybellwaves
+    - hoxbro
