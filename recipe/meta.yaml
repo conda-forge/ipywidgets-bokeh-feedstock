@@ -6,16 +6,16 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/ipywidgets_bokeh-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 42f3dbe39bd1618a98f1b9ea43ac2573533fc56badb85fee5145d1235467f636
 
 build:
   number: 1
 
 outputs:
-  - name: ipywidgets_bokeh
-    script: {{ PYTHON }} -m pip install . -vv
+  - name: {{ name }}
     build:
+      script: python -m pip install . -vv
       noarch: python
     requirements:
       host:
@@ -26,8 +26,6 @@ outputs:
         - bokeh ==3.*
         - ipykernel ==6.*,!=6.18.0
         - ipywidgets ==8.*
-      run_constrained:
-        - ipywidgets-bokeh {{ version }}
     test:
       imports:
         - ipywidgets_bokeh
@@ -37,9 +35,11 @@ outputs:
         - pip
 
   - name: ipywidgets-bokeh
+    build:
+      noarch: python
     requirements:
       run:
-        - {{ pin_subpackage('ipywidgets_bokeh', exact=True) }}
+        - {{ pin_subpackage(name, exact=True) }}
     test:
       imports:
         - ipywidgets_bokeh
