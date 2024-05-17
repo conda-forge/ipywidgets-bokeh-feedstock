@@ -22,8 +22,6 @@ outputs:
         - python >=3.9
         - pip
         - setuptools
-        - bokeh ==3.*
-        - nodejs 18.*
       run:
         - python >=3.9
         - bokeh ==3.*
