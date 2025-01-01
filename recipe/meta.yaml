@@ -6,11 +6,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 42f3dbe39bd1618a98f1b9ea43ac2573533fc56badb85fee5145d1235467f636
 
 build:
-  number: 1
+  number: 2
 
 outputs:
   - name: {{ name }}
@@ -19,11 +19,11 @@ outputs:
       noarch: python
     requirements:
       host:
-        - python >=3.9
+        - python {{ python_min }}
         - pip
         - setuptools
       run:
-        - python >=3.9
+        - python >={{ python_min }}
         - bokeh ==3.*
         - ipykernel ==6.*,!=6.18.0
         - ipywidgets ==8.*
@@ -43,6 +43,8 @@ outputs:
       run:
         - {{ pin_subpackage(name, exact=True) }}
     test:
+      requires:
+        - python {{ python_min }}
       imports:
         - ipywidgets_bokeh
 
