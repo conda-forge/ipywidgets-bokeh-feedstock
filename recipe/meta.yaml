@@ -1,13 +1,13 @@
 {% set name = "ipywidgets_bokeh" %}
-{% set version = "1.7.0" %}
+{% set version = "1.8.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 062a1c3ee927831471df2d6438d5e8e5dc668c961192a3b619a0d2e70c8f7901
+  url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 87191fc4ced444daa441186fb2d13c8a30e730ff3fc5b7870748d162ddd73899
 
 build:
   number: 0
@@ -24,8 +24,8 @@ outputs:
         - setuptools
       run:
         - python >={{ python_min }}
-        - bokeh ==3.*
-        - ipykernel ==6.*,!=6.18.0
+        - bokeh >=3.4
+        - ipykernel >=6,!=6.18.0
         - ipywidgets ==8.*
     test:
       imports:
@@ -33,13 +33,17 @@ outputs:
       commands:
         - pip check
       requires:
+        - python {{ python_min }}
         - pip
 
   - name: ipywidgets-bokeh
     build:
       noarch: python
     requirements:
+      host:
+        - python {{ python_min }}
       run:
+        - python >={{ python_min }}
         - {{ pin_subpackage(name, exact=True) }}
     test:
       requires:
